@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid2";
 
 import "./ProductSearchPage.css";
 import Card from "../../Components/Card/Card";
+import AgregarProducto from "../../Components/Card/AgregarProducto";
 
 const productsData = [
   {
@@ -73,6 +74,7 @@ const ProductSearchPage = () => {
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState(productsData);
 
+
   useEffect(() => {
     setProducts(
       productsData.filter((product) =>
@@ -80,6 +82,16 @@ const ProductSearchPage = () => {
       )
     );
   }, [search]);
+
+ 
+  const handleAgregarProducto = (nuevoProducto) => {
+
+    const productoConId = {
+      ...nuevoProducto,
+      id: Math.floor(Math.random() * 10000), 
+    };
+    setProducts((prevProducts) => [...prevProducts, productoConId]); 
+  };
 
   return (
     <div className="product-search-page">
@@ -91,6 +103,8 @@ const ProductSearchPage = () => {
         onChange={(e) => setSearch(e.target.value)}
         style={{ marginTop: "4rem", marginBottom: "4rem" }}
       />
+      <AgregarProducto onAgregarProducto={handleAgregarProducto} />
+
       {products.length > 0 ? (
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {products.map((product) => (
