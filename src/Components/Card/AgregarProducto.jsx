@@ -110,7 +110,7 @@ export default function AgregarProducto({ onAgregarProducto }) {
               <input
                 type="number"
                 placeholder="Precio"
-                value={precio >= 0}
+                value={precio}
                 onChange={(e) => setPrecio(e.target.value)}
               />
             </Typography>
